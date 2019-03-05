@@ -2,11 +2,13 @@ package com.pritesh.androidloginunittestexample;
 
 import android.content.Context;
 
+import org.apache.commons.validator.EmailValidator;
 import org.junit.Test;
 import org.mockito.Mock;
 
 import java.util.Iterator;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -83,5 +85,10 @@ public class LoginUnitTest
         when(c.compareTo(anyInt())).thenReturn(-1);
         //assert
         assertEquals(-1, c.compareTo(9));
+    }
+
+    @Test
+    public void emailValidator_CorrectEmailSimple_ReturnsTrue() {
+        assertThat(EmailValidator.getInstance().isValid("name@email.com")).isTrue();
     }
 }
